@@ -71,6 +71,20 @@ if (isset($_GET['busca'])) {
         <th style="border: 1px solid black; padding: 10px;">Reg</th>
         <th style="border: 1px solid black; padding: 10px;">Proc. adm.</th>
         <th style="border: 1px solid black; padding: 10px;">Citação</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_CALCULO_IR</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_DATA_ATUALIZACAO</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_VALOR_PRINCIPAL</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_VALOR_ATUALIZADO</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_JUROS_MORATORIOS</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_CUSTAS</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_HONORARIOS</th>
+        <th style="border: 1px solid black; padding: 10px;">REQUERENTE_HONORARIOS_PERCENTUAL</th>
+        <th style="border: 1px solid black; padding: 10px;">CAPEP</th>
+        <th style="border: 1px solid black; padding: 10px;">IPREV</th>
+        <th style="border: 1px solid black; padding: 10px;">RESPONSAVEL_NOME</th>
+        <th style="border: 1px solid black; padding: 10px;">RESPONSAVEL_CARGO</th>
+        <th style="border: 1px solid black; padding: 10px;">RESPONSAVEL_DATA</th>
+        <th style="border: 1px solid black; padding: 10px;">RESPONSAVEL_CONCLUSOES</th>
     </tr>
     <?php
     // Exibindo os resultados da consulta
@@ -83,6 +97,20 @@ if (isset($_GET['busca'])) {
             echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REG']}</td>";
             echo "<td style='border: 1px solid black; padding: 10px;'>{$row['PROCESS_ADM']}</td>";
             echo "<td style='border: 1px solid black; padding: 10px;'>{$row['CITACAO']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_CALCULO_IR']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_DATA_ATUALIZACAO']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_VALOR_PRINCIPAL']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_VALOR_ATUALIZADO']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_JUROS_MORATORIOS']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_CUSTAS']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_HONORARIOS']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['REQUERENTE_HONORARIOS_PERCENTUAL']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['CAPEP']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['IPREV']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['RESPONSAVEL_NOME']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['RESPONSAVEL_CARGO']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['RESPONSAVEL_DATA']}</td>";
+            echo "<td style='border: 1px solid black; padding: 10px;'>{$row['RESPONSAVEL_CONCLUSOES']}</td>";
             echo "</tr>";
         }
     } else {
