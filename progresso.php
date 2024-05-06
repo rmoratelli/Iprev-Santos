@@ -81,7 +81,7 @@ label {
 </head>
 <body>
 <a href="header.php"><button type="button" class="btn btn-outline-secondary">Voltar</button></a>
-<img src="img/iprevsantos.png" class="rounded mx-auto d-block" alt="imagem do logo da empresa com a descrição iprev santos em duas cores (preto e dourado)">
+<img src="./img/iprevsantos.png" class="rounded mx-auto d-block" alt="logo da empresa com a descrição iprev santos em duas cores (preto e dourado)">
 
 <h4 id="textoCadastro">Cadastro de Informações:</h4><br>
 
@@ -324,60 +324,60 @@ label {
                         die("Conexão falhou: " . $conn->connect_error);
                     }
 
-                    $sql_code = "SELECT 
-                    c.NUMERO_PROCESSO_DIGITAL, 
-                    MIN(c.NOME_REQUERENTE) AS NOME_REQUERENTE, 
-                    MIN(c.CPF_REQUERENTE) AS CPF_REQUERENTE, 
-                    MIN(c.REG_REQUERENTE) AS REG_REQUERENTE, 
-                    MIN(c.PROCESSO_ADMINISTRATIVO) AS PROCESSO_ADMINISTRATIVO, 
-                    MIN(c.CITACAO_REQUERENTE) AS CITACAO_REQUERENTE, 
-                    MIN(c.CALCULO_IR) AS CALCULO_IR, 
-                    MIN(c.DATA_ATUALIZACAO) AS DATA_ATUALIZACAO, 
-                    MIN(c.VALOR_PRINCIPAL) AS VALOR_PRINCIPAL, 
-                    MIN(c.VALOR_ATUALIZADO) AS VALOR_ATUALIZADO, 
-                    MIN(c.JUROS_MORATORIOS) AS JUROS_MORATORIOS, 
-                    MIN(c.CUSTAS) AS CUSTAS, 
-                    MIN(c.HONORARIOS) AS HONORARIOS, 
-                    MIN(c.HONORARIOS_PERCENTUAL) AS HONORARIOS_PERCENTUAL, 
-                    MIN(c.CAPEP_VALOR) AS CAPEP_VALOR, 
-                    MIN(c.IPREV_VALOR) AS IPREV_VALOR, 
-                    MIN(c.NOME_RESPONSAVEL) AS NOME_RESPONSAVEL, 
-                    MIN(c.CARGO_RESPONSAVEL) AS CARGO_RESPONSAVEL, 
-                    MIN(c.DATA_RESPONSAVEL) AS DATA_RESPONSAVEL, 
-                    MIN(c.CONCLUSOES) AS CONCLUSOES, 
-                    GROUP_CONCAT(DISTINCT i.DATA_INDICE SEPARATOR '<br>') AS DATA_INDICE, 
-                    GROUP_CONCAT(DISTINCT i.VALOR_INDICE SEPARATOR '<br>') AS VALOR_INDICE, 
-                    GROUP_CONCAT(DISTINCT i.DIFERENCA_INICIAL SEPARATOR '<br>') AS DIFERENCA_INICIAL, 
+                    $sql_code = "SELECT
+                    c.NUMERO_PROCESSO_DIGITAL,
+                    MIN(c.NOME_REQUERENTE) AS NOME_REQUERENTE,
+                    MIN(c.CPF_REQUERENTE) AS CPF_REQUERENTE,
+                    MIN(c.REG_REQUERENTE) AS REG_REQUERENTE,
+                    MIN(c.PROCESSO_ADMINISTRATIVO) AS PROCESSO_ADMINISTRATIVO,
+                    MIN(c.CITACAO_REQUERENTE) AS CITACAO_REQUERENTE,
+                    MIN(c.CALCULO_IR) AS CALCULO_IR,
+                    MIN(c.DATA_ATUALIZACAO) AS DATA_ATUALIZACAO,
+                    MIN(c.VALOR_PRINCIPAL) AS VALOR_PRINCIPAL,
+                    MIN(c.VALOR_ATUALIZADO) AS VALOR_ATUALIZADO,
+                    MIN(c.JUROS_MORATORIOS) AS JUROS_MORATORIOS,
+                    MIN(c.CUSTAS) AS CUSTAS,
+                    MIN(c.HONORARIOS) AS HONORARIOS,
+                    MIN(c.HONORARIOS_PERCENTUAL) AS HONORARIOS_PERCENTUAL,
+                    MIN(c.CAPEP_VALOR) AS CAPEP_VALOR,
+                    MIN(c.IPREV_VALOR) AS IPREV_VALOR,
+                    MIN(c.NOME_RESPONSAVEL) AS NOME_RESPONSAVEL,
+                    MIN(c.CARGO_RESPONSAVEL) AS CARGO_RESPONSAVEL,
+                    MIN(c.DATA_RESPONSAVEL) AS DATA_RESPONSAVEL,
+                    MIN(c.CONCLUSOES) AS CONCLUSOES,
+                    GROUP_CONCAT(DISTINCT i.DATA_INDICE SEPARATOR '<br>') AS DATA_INDICE,
+                    GROUP_CONCAT(DISTINCT i.VALOR_INDICE SEPARATOR '<br>') AS VALOR_INDICE,
+                    GROUP_CONCAT(DISTINCT i.DIFERENCA_INICIAL SEPARATOR '<br>') AS DIFERENCA_INICIAL,
                     GROUP_CONCAT(DISTINCT i.IR SEPARATOR '<br>') AS IR,
                     (
-                        SELECT GROUP_CONCAT(CAL_VALOR_ATUALIZADO SEPARATOR '<br>') 
-                        FROM informacoes_financeiras 
+                        SELECT GROUP_CONCAT(CAL_VALOR_ATUALIZADO SEPARATOR '<br>')
+                        FROM informacoes_financeiras
                         WHERE ID_CLIENTE = c.ID_CLIENTE
                     ) AS CAL_VALOR_ATUALIZADO,
                     (
-                        SELECT GROUP_CONCAT(CAL_CAPEP_RETENCAO_LEGAL SEPARATOR '<br>') 
-                        FROM informacoes_financeiras 
+                        SELECT GROUP_CONCAT(CAL_CAPEP_RETENCAO_LEGAL SEPARATOR '<br>')
+                        FROM informacoes_financeiras
                         WHERE ID_CLIENTE = c.ID_CLIENTE
                     ) AS CAL_CAPEP_RETENCAO_LEGAL,
                     (
-                        SELECT GROUP_CONCAT(CAL_IPREV_RETENCAO_LEGAL SEPARATOR '<br>') 
-                        FROM informacoes_financeiras 
+                        SELECT GROUP_CONCAT(CAL_IPREV_RETENCAO_LEGAL SEPARATOR '<br>')
+                        FROM informacoes_financeiras
                         WHERE ID_CLIENTE = c.ID_CLIENTE
                     ) AS CAL_IPREV_RETENCAO_LEGAL,
                     (
-                        SELECT GROUP_CONCAT(CAL_IR_RETENCAO_LEGAL SEPARATOR '<br>') 
-                        FROM informacoes_financeiras 
+                        SELECT GROUP_CONCAT(CAL_IR_RETENCAO_LEGAL SEPARATOR '<br>')
+                        FROM informacoes_financeiras
                         WHERE ID_CLIENTE = c.ID_CLIENTE
                     ) AS CAL_IR_RETENCAO_LEGAL
-                FROM 
-                    cadastro_cliente c 
-                LEFT JOIN 
-                    informacoes_financeiras i 
-                ON 
-                    c.ID_CLIENTE = i.ID_CLIENTE 
-                WHERE 
-                    c.NUMERO_PROCESSO_DIGITAL = '$pesquisar_processo' 
-                GROUP BY 
+                FROM
+                    cadastro_cliente c
+                LEFT JOIN
+                    informacoes_financeiras i
+                ON
+                    c.ID_CLIENTE = i.ID_CLIENTE
+                WHERE
+                    c.NUMERO_PROCESSO_DIGITAL = '$pesquisar_processo'
+                GROUP BY
                     c.NUMERO_PROCESSO_DIGITAL";
 
 
