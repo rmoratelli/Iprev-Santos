@@ -12,5 +12,3 @@ if ($mysqli->connect_errno) {
     echo "Erro ao conectar a base de dados: " . $mysqli->connect_error;
     exit();
 }
-?>
-

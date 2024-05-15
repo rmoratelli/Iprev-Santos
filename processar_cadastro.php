@@ -37,7 +37,7 @@ if (isset($_POST) && !empty($_POST)) {
     }
 
     // Preparação e execução da consulta SQL para inserção na tabela "cadastro_cliente"
-    $sql_code_cadastro_cliente = "INSERT INTO cadastro_cliente (NUMERO_PROCESSO_DIGITAL, NOME_REQUERENTE, CPF_REQUERENTE, REG_REQUERENTE, PROCESSO_ADMINISTRATIVO, CITACAO_REQUERENTE, CALCULO_IR, DATA_ATUALIZACAO, VALOR_PRINCIPAL, VALOR_ATUALIZADO, JUROS_MORATORIOS, CUSTAS, HONORARIOS, HONORARIOS_PERCENTUAL, IPREV_VALOR, NOME_RESPONSAVEL, CARGO_RESPONSAVEL, DATA_RESPONSAVEL, CONCLUSOES, CAPEP_VALOR) 
+    $sql_code_cadastro_cliente = "INSERT INTO cadastro_cliente (NUMERO_PROCESSO_DIGITAL, NOME_REQUERENTE, CPF_REQUERENTE, REG_REQUERENTE, PROCESSO_ADMINISTRATIVO, CITACAO_REQUERENTE, CALCULO_IR, DATA_ATUALIZACAO, VALOR_PRINCIPAL, VALOR_ATUALIZADO, JUROS_MORATORIOS, CUSTAS, HONORARIOS, HONORARIOS_PERCENTUAL, IPREV_VALOR, NOME_RESPONSAVEL, CARGO_RESPONSAVEL, DATA_RESPONSAVEL, CONCLUSOES, CAPEP_VALOR)
         VALUES ('$numero_processo_digital', '$nome_requerente', '$cpf_requerente', '$reg_requerente', '$processo_administrativo', '$citacao_requerente', '$calculo_ir', '$data_atualizacao', '$valor_principal', '$valor_atualizado', '$juros_moratorios', '$custas', '$honorarios', '$honorarios_percentual', '$iprev_valor', '$nome_responsavel', '$cargo_responsavel', '$data_responsavel', '$conclusoes', '$capep_valor')";
 
     if ($conn->query($sql_code_cadastro_cliente) === TRUE) {
@@ -61,7 +61,7 @@ if (isset($_POST) && !empty($_POST)) {
         $dif_inicial = $diferenca_inicial[$key] ?? '';
         $ir_value = $ir[$key] ?? '';
 
-        $sql_code_informacoes_financeiras = "INSERT INTO informacoes_financeiras (ID_CLIENTE, DATA_INDICE, VALOR_INDICE, DIFERENCA_INICIAL, IR, CAL_IR_RETENCAO_LEGAL) 
+        $sql_code_informacoes_financeiras = "INSERT INTO informacoes_financeiras (ID_CLIENTE, DATA_INDICE, VALOR_INDICE, DIFERENCA_INICIAL, IR, CAL_IR_RETENCAO_LEGAL)
             VALUES ('$id_cliente', '$data', '$valor_ind', '$dif_inicial', '$ir_value', ($ir_value / $valor_ind * $valor_ind))";
 
         if ($conn->query($sql_code_informacoes_financeiras) === TRUE) {
@@ -74,8 +74,8 @@ if (isset($_POST) && !empty($_POST)) {
             $valor_atualizado = floatval($dif_inicial) / floatval($valor_ind);
             
             // Preparar e executar a consulta SQL para atualizar o valor atualizado
-            $sql_atualizar_valor_atualizado = "UPDATE informacoes_financeiras 
-                                               SET CAL_VALOR_ATUALIZADO = '$valor_atualizado' 
+            $sql_atualizar_valor_atualizado = "UPDATE informacoes_financeiras
+                                               SET CAL_VALOR_ATUALIZADO = '$valor_atualizado'
                                                WHERE ID_INFORMACAO = '$id_informacao_inserida'";
             
             if ($conn->query($sql_atualizar_valor_atualizado) === TRUE) {
@@ -85,8 +85,8 @@ if (isset($_POST) && !empty($_POST)) {
                 $calculo_capep = $valor_atualizado * 0.3;
 
                 // Preparar e executar a consulta SQL para atualizar o CAPEP na tabela "informacoes_financeiras"
-                $sql_atualizar_capep = "UPDATE informacoes_financeiras 
-                                        SET CAL_CAPEP_RETENCAO_LEGAL = '$calculo_capep' 
+                $sql_atualizar_capep = "UPDATE informacoes_financeiras
+                                        SET CAL_CAPEP_RETENCAO_LEGAL = '$calculo_capep'
                                         WHERE ID_INFORMACAO = '$id_informacao_inserida'";
 
                 if ($conn->query($sql_atualizar_capep) === TRUE) {
@@ -96,8 +96,8 @@ if (isset($_POST) && !empty($_POST)) {
                     $calculo_iprev = $valor_atualizado * 0.12;
 
                     // Preparar e executar a consulta SQL para atualizar o IPREV na tabela "informacoes_financeiras"
-                    $sql_atualizar_iprev = "UPDATE informacoes_financeiras 
-                                            SET CAL_IPREV_RETENCAO_LEGAL = '$calculo_iprev' 
+                    $sql_atualizar_iprev = "UPDATE informacoes_financeiras
+                                            SET CAL_IPREV_RETENCAO_LEGAL = '$calculo_iprev'
                                             WHERE ID_INFORMACAO = '$id_informacao_inserida'";
 
                     if ($conn->query($sql_atualizar_iprev) === TRUE) {
